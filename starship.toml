@@ -1,0 +1,72 @@
+# Replace the "❯" symbol in the prompt with "❯❯"
+[character]
+format = "❯❯ "
+success_symbol = "❯❯(bold green) "
+error_symbol = "❯❯(bold red) "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Disable the AWS module.
+[aws]
+disabled = true
+
+# Set the time format
+[time]
+disabled = false
+time_format = "%m-%d %I:%M"
+utc_time_offset = "-4"
+
+# Directory setttings
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = "…/"
+
+[username]
+disabled = true
+
+[hostname]
+ssh_only = false
+format =  "[$hostname](bold red) ❯ "
+
+# Workaround for slow prompt with git status
+[git_status]
+disabled = true
+
+[battery]
+full_symbol = "🔋 "
+charging_symbol = "⚡️ "
+discharging_symbol = "💀 "
+
+[[battery.display]]
+threshold = 33
+style = "bold red"
+
+[jobs]
+symbol = "+ "
+#threshold = 4
+number_threshold = 4
+
+#[memory_usage]
+#disabled = true
+#threshold = -1
+#symbol = " "
+#style = "bold dimmed green"
+
+[memory_usage]
+disabled = false
+threshold = -1
+symbol = "🐏"
+style = "bold red"
+format = " $symbol [${ram}]($style) "
+
+[status]
+style = "bg:blue"
+symbol = "🔴"
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = false
+
