@@ -64,9 +64,17 @@ style = "bold red"
 format = " $symbol [${ram}]($style) "
 
 [status]
-style = "bg:blue"
-symbol = "🔴"
-format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+#style = "bg:blue"
+#symbol = "🔴"
+#symbol = "💣"
+symbol = "❌"
+success_symbol = "✅"
+#format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+format = '$symbol $common_meaning$signal_name$maybe_int($style)'
 map_symbol = true
 disabled = false
 
+[sudo]
+style = "bold green"
+symbol = "🧙 "
+disabled = false
