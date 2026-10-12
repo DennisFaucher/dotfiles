@@ -2,47 +2,47 @@ set -x PATH /home/dennis/.local/bin /home/dennis/openssl/bin /home/dennis/.nvm/v
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-
-function fish_prompt
-    set -l pointer_color red
-    #test $status = 0; and set pointer_color yellow
-    test $status = 0; and set pointer_color purple
-
-    set -q __fish_git_prompt_showupstream
-    or set -g __fish_git_prompt_showupstream auto
-
-    if not set -q VIRTUAL_ENV_DISABLE_PROMPT
-        set -g VIRTUAL_ENV_DISABLE_PROMPT true
-    end
-
-    #set_color yellow
-    set_color purple
-    printf '['
-    printf '%s@%s' $USER $hostname
-    set_color normal
-    printf ' in '
-
-    set_color $fish_color_cwd
-    set -l fish_prompt_pwd_dir_length 0
-    #printf '%s' (prompt_pwd --dir-length=0)
-    printf '%s' (prompt_pwd)
-    printf ']'
-    set_color normal
-
-    # git
-    set_color white -d
-    set -l prompt_git (fish_git_prompt '%s')
-    test -n "$prompt_git"
-    and printf ' %s' $prompt_git
-    set_color normal
-
-    # Line 2
-    echo
-    set_color $pointer_color
-    #printf '» '
-    printf '$ '
-    set_color normal
-end
+#
+#function fish_prompt
+#    set -l pointer_color red
+#    #test $status = 0; and set pointer_color yellow
+#    test $status = 0; and set pointer_color purple
+#
+#    set -q __fish_git_prompt_showupstream
+#    or set -g __fish_git_prompt_showupstream auto
+#
+#    if not set -q VIRTUAL_ENV_DISABLE_PROMPT
+#        set -g VIRTUAL_ENV_DISABLE_PROMPT true
+#    end
+#
+#    #set_color yellow
+#    set_color purple
+#    printf '['
+#    printf '%s@%s' $USER $hostname
+#    set_color normal
+#    printf ' in '
+#
+#    set_color $fish_color_cwd
+#    set -l fish_prompt_pwd_dir_length 0
+#    #printf '%s' (prompt_pwd --dir-length=0)
+#    printf '%s' (prompt_pwd)
+#    printf ']'
+#    set_color normal
+#
+#    # git
+#    set_color white -d
+#    set -l prompt_git (fish_git_prompt '%s')
+#    test -n "$prompt_git"
+#    and printf ' %s' $prompt_git
+#    set_color normal
+#
+#    # Line 2
+#    echo
+#    set_color $pointer_color
+#    #printf '» '
+#    printf '$ '
+#    set_color normal
+#end
 # Fish command history
 function history
     builtin history --show-time='%F %T '
@@ -58,22 +58,86 @@ alias ll 'eza -al --color=always --group-directories-first --icons'  # long form
 alias lt 'eza -aT --color=always --group-directories-first --icons' # tree listing
 alias l. 'eza -ald --color=always --group-directories-first --icons .*' # show only dotfiles
 alias sshn 'ssh dennis@nvidia-k8s'
-alias cdb 'cd /Users/faucherd/Documents/Personal/MBP-Personal/Programming/bash'
+#alias cdb 'cd /Users/faucherd/Documents/Personal/MBP-Personal/Programming/bash'
 
 # Replace some more things with better alternatives
 #alias cat 'bat --style header --style snip --style changes --style header'
-alias cat 'batcat --style header --style snip --style changes --style header'
+#alias cat 'batcat --style header --style snip --style changes --style header'
 #alias cat 'batcat'
 alias less 'less -FRi'
 alias stats 'docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}" | sort -r -u -k 2'
+alias virsh 'virsh --connect qemu:///system'
 
 #Bash Migration
 # DMF for OpenSSL
-set -x PATH $HOME/openssl/bin:$PATH
-set -x LD_LIBRARY_PATH $HOME/openssl/lib
-set -x LC_ALL "en_US.UTF-8"
-set -x LDFLAGS "-L /home/dennis/openssl/lib -Wl,-rpath,/home/dennis/openssl/lib"
+# set -x PATH $HOME/openssl/bin:$PATH
+# set -x LD_LIBRARY_PATH $HOME/openssl/lib
+# set -x LC_ALL "en_US.UTF-8"
+# set -x LDFLAGS "-L /home/dennis/openssl/lib -Wl,-rpath,/home/dennis/openssl/lib"
 # pyenv fish-specific
-set -x PYENV_ROOT $HOME/.pyenv
-set -x PATH $PYENV_ROOT/shims $PYENV_ROOT/bin $PATH
-pyenv rehash
+#set -x PYENV_ROOT $HOME/.pyenv
+#set -x PATH $PYENV_ROOT/shims $PYENV_ROOT/bin $PATH
+#pyenv rehash
+# Add pyenv executable to PATH by running
+# the following interactively:
+
+set -Ux PYENV_ROOT $HOME/.pyenv
+set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+
+# Load pyenv automatically by appending
+# the following to ~/.config/fish/config.fish:
+
+pyenv init - | source
+
+# vim not vi for awesome .vimrc
+alias vi vim
+#docker ps
+alias dps "docker ps --format '{{.Names}} | {{.Ports}}'"
+alias dpsp "docker ps --format '{{.Ports}}' | sort"
+alias gemini "npx https://github.com/google-gemini/gemini-cli"
+#Upgrade Docker Compose
+alias dockerupgrade 'docker compose down ; docker compose pull ; docker compose up -d ; docker image prune -f'
+# Claude Progress
+alias progress '/home/dennis/Documents/Programming/Python/claude-progress/claude_progress.py'
+# Opencode Clear
+alias ocode 'opencode ; clear'
+alias ocodemouse 'OPENCODE_DISABLE_MOUSE=1 opencode --dangerously-skip-permissions ;  clear'
+alias btm 'btm --theme default-light'
+alias opendirs 'sudo find . -type d -exec chmod 777 "{}" \;'
+alias openfiles 'sudo find . -type f -exec chmod 666 "{}" \;'
+
+# $EDITOR for glow
+set -x EDITOR /usr/bin/vim
+fish_add_path /home/dennis/.pixi/bin
+
+# Conda
+fish_add_path /home/dennis/miniconda3/bin
+
+#Powerline Prompt
+function fish_prompt
+  powerline shell left
+end
+
+# OpenClaw Completion
+source "/home/dennis/.openclaw/completions/openclaw.fish"
+
+# CUDA llama-server libraries
+# set -x LD_LIBRARY_PATH /home/dennis/openssl/lib /home/dennis/docker/docker-migration/llama/cuda-12.8
+
+#NVM for Node.js
+export NVM_DIR="$HOME/.nvm"
+# set -gx LIBGL_ALWAYS_SOFTWARE 1
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/dennis/.local/bin" $PATH
+
+# opencode
+fish_add_path /home/dennis/.opencode/bin
+
+# pnpm
+set -gx PNPM_HOME "/home/dennis/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
