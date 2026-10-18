@@ -1,9 +1,10 @@
-# GitHub
-# Automagic GitHub sync of this file to dennisfaucher/dotfiles/config.fish.mac set up on 2026-10-10
-
 # The following lines were added by Docker Desktop to add commands to your PATH.
 export PATH="$PATH:/Users/faucherd/.docker/bin"
 # End of Docker Desktop section.
+
+# GitHub
+# Automagic GitHub sync of this file to dennisfaucher/dotfiles/config.fish.mac set up on 2026-10-10
+
 
 # Homebrew (standard install)
 if test -f /opt/homebrew/bin/brew
