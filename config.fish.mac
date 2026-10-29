@@ -45,6 +45,7 @@ alias brewup 'brew update; brew doctor; brew upgrade --greedy -y ; brew cleanup'
 alias brewcheck 'brew outdated --greedy'
 alias fzfopen 'open "$(fzf)"'
 alias unitui '/Applications/UniGetUI.app/Contents/MacOS/uniget tui'
+alias openworld 'cd /Users/faucherd/Documents/Sync/MBP-Personal/Programming/Swift/OpenWorld && swift run -c release'
 
 # Exports
 export OLLAMA_CONTEXT_LENGTH=65536
