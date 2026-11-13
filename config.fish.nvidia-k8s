@@ -106,6 +106,7 @@ alias btm 'btm --theme default-light'
 alias opendirs 'sudo find . -type d -exec chmod 777 "{}" \;'
 alias openfiles 'sudo find . -type f -exec chmod 666 "{}" \;'
 alias cdb 'cd /home/dennis/Documents/Programming/bash'
+alias whatsplaying 'ps -ef|grep -i "Plex Transcoder"'
 
 # $EDITOR for glow
 set -x EDITOR /usr/bin/vim
