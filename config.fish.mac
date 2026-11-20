@@ -35,6 +35,7 @@ alias transcriber '/Users/faucherd/Documents/Sync/MBP-Personal/Programming/Swift
 alias transcribes '/Users/faucherd/Documents/Sync/MBP-Personal/Programming/Swift/transcribe-mps/.build/debug/transcribe-mps record --mic "Sony Earbuds" --speakers "Sony Earbuds"'
 alias transcribem '/Users/faucherd/Documents/Sync/MBP-Personal/Programming/Swift/transcribe-mps/.build/debug/transcribe-mps record --mic "MacBook Pro Microphone"'
 alias sshn 'ssh dennis@192.168.1.11'
+alias sshx 'ssh dennis@192.168.86.44'
 alias fbj '/Users/faucherd/Documents/Sync/MBP-Personal/Programming/bash/fix_logseg_bold_journals.sh'
 alias logs '/Users/faucherd/Documents/Sync/MBP-Personal/Programming/bash/Claude/graylog_claude.sh'
 alias vpnup 'wg-quick up "/Users/faucherd/Documents/Sync/MBP-Personal/Home Lab/WireGuard/GloucesterVPN.conf"'
